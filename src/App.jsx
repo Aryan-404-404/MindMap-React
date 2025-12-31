@@ -125,7 +125,7 @@ export default function App() {
   return (
     <>
       <NavBar />
-      <div style={{ display: 'flex', width: '100vw', height: '100vh' }}>
+      <div className="w-screen h-screen flex flex-col md:flex-row flex-1 overflow-hidden">
 
         {/* LEFT: The Graph */}
         <div style={{ flex: 1, height: '100%' }} className="bg-gray-50 border-r border-gray-200">
@@ -143,7 +143,7 @@ export default function App() {
         </div>
 
         {/* RIGHT: The Sidebar */}
-        <div className="w-80 bg-white p-5 shadow-xl mt-15">
+        <div className="md:w-80 w-full bg-white p-5 shadow-xl mt-15">
           <h2 className="text-xl font-bold mb-4  text-gray-800">Details</h2>
           <div className=" pt-6 border-t border-gray-200">
             <button
