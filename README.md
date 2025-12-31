@@ -4,6 +4,16 @@ A dynamic, interactive Mind Map application built with **React** and **React Flo
 
 **[👉 View Live Demo](https://mind-map-react-three.vercel.app/)**
 
+## 📸 Screenshots
+
+### 1. Full Mind Map View
+![Full View](screenshots/Full_map.png)
+
+### 2. Sidebar Details
+![Sidebar](screenshots/map_Edit.png)
+
+### 3. Collapsed State
+![Collapsed Node](screenshots/Colapsed.png)
 ---
 
 ## ✨ Features
