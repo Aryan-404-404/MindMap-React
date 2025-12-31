@@ -1,16 +1,97 @@
-# React + Vite
+# 🧠 Interactive Mind Map (React Flow)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic, interactive Mind Map application built with **React** and **React Flow**. This project allows users to visualize hierarchical data, manage nodes (add, edit, delete), and reorganize the structure with an automated layout engine.
 
-Currently, two official plugins are available:
+**[👉 View Live Demo](https://mind-map-react-three.vercel.app/)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+* **👀 Visualization:** Automatically renders hierarchical data into a clean, tree-like structure using the **Dagre** layout engine.
+* **➕ Dynamic Updates:**
+    * **Add Nodes:** Create new child nodes dynamically with a single click.
+    * **Edit Nodes:** Real-time renaming of nodes via a sidebar interface.
+* **📂 Expand & Collapse:** Click any parent node to toggle visibility of its children (Recursive collapse logic).
+* **ℹ️ Rich Information:**
+    * **Sidebar Details:** View detailed information/paragraphs for selected nodes.
+    * **Visual Badges:** Nodes with hidden children show a pulsing `+` badge.
+* **💾 Export Data:** Download the current state of the mind map as a `.json` file.
+* **🎨 Responsive Design:** Built with **Tailwind CSS** for a clean, modern UI that works on split-screen.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Tech Stack
+
+* **Frontend Library:** [React.js](https://reactjs.org/) (Vite)
+* **Visualization:** [@xyflow/react](https://reactflow.dev/) (React Flow)
+* **Layout Engine:** [dagre](https://github.com/dagrejs/dagre) (Directed Graph Layout)
+* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+* **Icons/Components:** Custom SVG components & Standard HTML5
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run the project locally.
+
+### Prerequisites
+* Node.js (v14 or higher)
+* npm or yarn
+
+### Installation
+
+1.  **Clone the repository**
+    ```bash
+    git clone [https://github.com/your-username/mind-map-react.git](https://github.com/your-username/mind-map-react.git)
+    cd mind-map-react
+    ```
+
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
+
+3.  **Start the development server**
+    ```bash
+    npm run dev
+    ```
+
+---
+
+## 📖 Usage Guide
+
+1.  **Exploring the Graph:**
+    * **Drag** the canvas to move around.
+    * **Scroll** to zoom in/out.
+    * **Click** on a node ("Fat Soluble") to collapse its children. A **(+)** badge will appear to indicate hidden content. Click again to expand.
+
+2.  **Editing Nodes:**
+    * Click on any node to select it.
+    * The **Sidebar** on the right will show details.
+    * Type in the "Rename Node" input box to change the label instantly.
+
+3.  **Adding New Nodes:**
+    * Select a node (e.g., "Vitamin A").
+    * Click the **"+ Add Child Node"** button in the sidebar.
+    * A new node will appear attached to the parent.
+
+4.  **Exporting:**
+    * Click the **"💾 Save / Download JSON"** button at the bottom of the sidebar to save your current map structure.
+
+---
+
+## 📂 Project Structure
+
+```bash
+src/
+├── components/
+│   └── MindMapNode.jsx    # Custom Node UI (Badge, Handles, Tooltip)
+├── data/
+│   └── initialData.js     # Starting JSON data (Vitamins dataset)
+├── utils/
+│   ├── graphUtils.js      # Recursive logic (getDescendants)
+│   ├── layout.js          # Dagre layout configuration
+│   └── export.js          # JSON download logic
+├── App.jsx                # Main Application Logic (State, Handlers)
+└── main.jsx               # Entry point
