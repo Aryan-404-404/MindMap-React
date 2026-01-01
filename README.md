@@ -4,6 +4,22 @@ A dynamic, interactive Mind Map application built with **React** and **React Flo
 
 **[👉 View Live Demo](https://mind-map-react-three.vercel.app/)**
 
+## 🎥 Demo Video
+
+Watch the full walkthrough of the application:
+
+**[▶️ Click here to watch the Demo (Loom)](https://www.loom.com/share/75d4f9314f904dcd8f0f32e3f1157c84)**
+
+## 📸 Screenshots
+
+### 1. Full Mind Map View
+![Full View](screenshots/Full_map.png)
+
+### 2. Sidebar Details
+![Sidebar](screenshots/map_Edit.png)
+
+### 3. Collapsed State
+![Collapsed Node](screenshots/Colapsed.png)
 ---
 
 ## ✨ Features
@@ -30,6 +46,24 @@ A dynamic, interactive Mind Map application built with **React** and **React Flo
 * **Icons/Components:** Custom SVG components & Standard HTML5
 
 ---
+## 🏗️ Architecture & Data Flow
+
+### 1. Data Initialization (`src/data/initialData.js`)
+The application starts with a static JSON-like dataset defining the initial nodes and edges. This strictly separates **data** from **UI logic**.
+
+### 2. Layout Calculation (`src/utils/layout.js`)
+Before rendering, the raw data is passed to the **Dagre** layout engine.
+* **Input:** Flat arrays of nodes and edges.
+* **Process:** Dagre calculates the `x` and `y` coordinates for a hierarchical tree structure (Left-to-Right).
+* **Output:** Positioned nodes ready for the React Flow canvas.
+
+### 3. State Management (`App.jsx`)
+The positioned data is stored in React Flow's `useNodesState` and `useEdgesState` hooks.
+* **Interactions:** User actions (clicking, expanding) update this state.
+* **Re-Layout:** When a branch expands/collapses, the layout engine runs again on the visible nodes to maintain a clean structure.
+
+### 4. Component Rendering
+* **`MindMapNode.jsx`:** A custom component renders individual nodes. It uses the `useReactFlow` hook to query the graph state (e.g., to check for hidden children) and render visual cues (badges/tooltips).
 
 ## 🚀 Getting Started
 
