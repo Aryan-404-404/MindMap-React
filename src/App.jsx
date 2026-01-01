@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ReactFlow, useNodesState, useEdgesState, Controls, Background } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
+import { Trash2 } from "lucide-react";
 
 import MindMapNode from './components/MindMapNode';
 import { getLayoutedElements } from './utils/layout';
@@ -121,6 +122,25 @@ export default function App() {
     setEdges(layout.edges);
   };
 
+  const onDeleteChild = ()=>{
+    if(!selectedNode) return
+    if(selectedNode.id==='1'){
+      alert("You can no delete the Root node You can modify it!")
+      return;
+    }
+    const deleteId = selectedNode.id;
+    const descendants = getDescendants(nodes, edges, deleteId)
+    const IdsToDelete = [deleteId, ...descendants.map((d)=> d.id)]
+    const newNodes = nodes.filter((n)=> !IdsToDelete.includes(n.id))
+    const newEdges = edges.filter((e)=>
+      !IdsToDelete.includes(e.source) && 
+      !IdsToDelete.includes(e.target)
+    )
+    setNodes(newNodes)
+    setEdges(newEdges)
+    setSelectedNode(null)
+  }
+
 
   return (
     <>
@@ -186,11 +206,20 @@ export default function App() {
               <div className="mt-4">
                 <button
                   onClick={onAddChild}
-                  className="w-full py-2 bg-blue-50 text-blue-600 font-semibold rounded hover:bg-blue-100 transition flex items-center justify-center gap-2"
+                  className="w-full py-2 bg-blue-50 text-blue-600 font-semibold rounded hover:bg-blue-300 transition flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {/* Plus Icon */}
                   <span className="text-lg font-bold">+</span>
                   Add Child Node
+                </button>
+              </div>
+              <div className="mt-4">
+                <button
+                  onClick={onDeleteChild}
+                  className="w-full py-2 bg-red-500/90 text-white hover:bg-red-500 font-semibold rounded transition flex items-center justify-center gap-2 cursor-pointer"
+                >
+                  <span className="text-lg font-bold"><Trash2 size={18}/></span>
+                  Delete Node
                 </button>
               </div>
             </div>

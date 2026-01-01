@@ -22,7 +22,7 @@ const MindMapNode = ({ id, data }) => {
             <div>{data.label}</div>
             <Handle type="source" position={Position.Right} className="w-3 h-3 bg-gray-400" />
             {hasHiddenChildren && (
-                <div className="absolute -bottom-2 -right-2 w-6 text-white h-6 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold border-2 border-white shadow-sm pointer-events-none animate-pulse pb-[2px]">
+                <div className="absolute -bottom-2 -right-2 w-6 text-white h-6 bg-blue-600 rounded-full flex items-center justify-center text-sm font-bold border-2 border-white shadow-sm pointer-events-none animate-pulse pb-0.5">
                     +
                 </div>
             )}
